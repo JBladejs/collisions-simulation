@@ -6,8 +6,11 @@ import com.badlogic.gdx.graphics.GL20
 
 
 class GameScreen(private val game: CollisionsGame) : Screen {
+    private val ball1 = Ball(10f, Color(255, 0, 0), Color(0, 0, 255), 320f, 360f, 2.5f, 2.5f)
+
 
     private fun update() {
+        ball1.move()
     }
 
     override fun render(delta: Float) {
@@ -15,7 +18,7 @@ class GameScreen(private val game: CollisionsGame) : Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
         with(game.renderer) {
             begin()
-            //TODO: whole rendering
+            ball1.render(this)
             end()
         }
         update()
