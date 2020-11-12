@@ -3,14 +3,18 @@ package com.game_physics.collisions
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.GL20
+import com.game_physics.collisions.system.CollisionSystem
+import com.game_physics.collisions.system.CollisionsGame
 
 
 class GameScreen(private val game: CollisionsGame) : Screen {
-    private val ball1 = Ball(10f, Color(255, 0, 0), Color(0, 0, 255), 320f, 360f, 2.5f, 2.5f)
-
+    private val ball1 = Ball(10f, Color(255, 0, 0), 320f, 360f, 2.5f, 2.5f)
+    private val ball2 = Ball(10f, Color(0, 0, 255), 980f, 360f, -2.5f, 2.5f)
 
     private fun update() {
         ball1.move()
+        ball2.move()
+        CollisionSystem.update()
     }
 
     override fun render(delta: Float) {
@@ -19,6 +23,7 @@ class GameScreen(private val game: CollisionsGame) : Screen {
         with(game.renderer) {
             begin()
             ball1.render(this)
+            ball2.render(this)
             end()
         }
         update()
