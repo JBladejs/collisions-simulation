@@ -1,4 +1,4 @@
-package com.game_physics.collisions.system
+package com.game_physics.collisions
 
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer

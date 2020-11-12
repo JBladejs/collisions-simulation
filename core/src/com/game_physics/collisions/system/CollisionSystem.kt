@@ -1,6 +1,9 @@
 package com.game_physics.collisions.system
 
+import com.badlogic.gdx.math.MathUtils.PI
+import com.badlogic.gdx.math.MathUtils.atan2
 import com.badlogic.gdx.utils.Array
+import com.game_physics.collisions.toDegrees
 
 object CollisionSystem {
     private val colliders = Array<CircleCollider>()
@@ -16,7 +19,11 @@ object CollisionSystem {
                if (colliders[i].collides(colliders[j])) {
                    if (!collisions.contains(Collision(colliders[i], colliders[j]), false)) {
                        collisions.add(Collision(colliders[i], colliders[j]))
-                       println("COLLISION!!!")
+                       colliders[i].isColiding = true
+                       colliders[i].collisionAngle = atan2(colliders[j].x - colliders[i].x, colliders[j].y - colliders[i].y).toDegrees()
+                       colliders[j].isColiding = true
+                       colliders[j].collisionAngle = atan2(colliders[i].x - colliders[j].x, colliders[i].y - colliders[j].y).toDegrees()
+                       println("Collision!")
                    }
                } else {
                    val collision = Collision(colliders[i], colliders[j])

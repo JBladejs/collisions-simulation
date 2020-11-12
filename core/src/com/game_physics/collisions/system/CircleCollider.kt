@@ -5,6 +5,8 @@ import kotlin.math.pow
 import kotlin.math.sqrt
 
 class CircleCollider(var x: Float, var y: Float, var radius: Float) {
+    var isColiding = false
+    var collisionAngle = 0f
 
     init {
         CollisionSystem.add(this)

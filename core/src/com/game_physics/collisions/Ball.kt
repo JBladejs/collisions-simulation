@@ -2,10 +2,12 @@ package com.game_physics.collisions
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.MathUtils.*
+import com.badlogic.gdx.math.MathUtils.cos
+import com.badlogic.gdx.math.MathUtils.sin
 import com.game_physics.collisions.system.CircleCollider
+import kotlin.math.abs
 
-class Ball(val radius: Float, private val color1: Color, x: Float = 0.0f, y: Float = 0.0f, private var vx: Float = 0.0f, private var vy: Float = 0.0f) {
+class Ball(val radius: Float, private val color: Color, x: Float = 0.0f, y: Float = 0.0f, private var vx: Float = 0.0f, private var vy: Float = 0.0f) {
     var x = x
         private set
     var y = y
@@ -26,14 +28,23 @@ class Ball(val radius: Float, private val color1: Color, x: Float = 0.0f, y: Flo
             else Gdx.graphics.height - radius
             vy *= -1
         }
-
         collider.update(x, y)
+        if (collider.isColiding) {
+            val angle1 = (collider.collisionAngle + 180f)
+            //TODO: Refactor using abs()
+            val perpendicular = if (vx >= 0) if (vy >= 0) -90f else 90f else if (vy >= 0) 90f else -90f
+            val angle2 = (collider.collisionAngle + perpendicular)
+            println("${collider.collisionAngle} $angle1 $angle2")
+            vx = abs(vx) * (sin(angle1.toRadians()) + sin(angle2.toRadians()))
+            vy = abs(vy) * (cos(angle1.toRadians()) + cos(angle2.toRadians()))
+            collider.isColiding = false
+        }
     }
 
     fun render(renderer: ShapeRenderer) {
         with(renderer) {
             set(ShapeRenderer.ShapeType.Filled)
-            setColor(color1)
+            setColor(this@Ball.color)
             circle(x, y, radius)
         }
     }
