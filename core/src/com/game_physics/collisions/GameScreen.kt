@@ -8,8 +8,8 @@ import com.game_physics.collisions.system.CollisionsGame
 
 
 class GameScreen(private val game: CollisionsGame) : Screen {
-    private val ball1 = Ball(10f, Color(255, 0, 0), 320f, 360f, 2.5f, 2.5f)
-    private val ball2 = Ball(10f, Color(0, 0, 255), 980f, 360f, -2.5f, 2.5f)
+    private val ball1 = Ball(30f, Color(255, 0, 0), 320f, 360f, 2.5f, 2.5f)
+    private val ball2 = Ball(30f, Color(0, 0, 255), 980f, 360f, -2.5f, 2.5f)
 
     private fun update() {
         ball1.move()
