@@ -12,9 +12,9 @@ class Ball(val radius: Float, private val color1: Color, x: Float = 0.0f, y: Flo
         private set
     private val collider = CircleCollider(x, y, radius)
 
-    fun move() {
-        x += vx
-        y += vy
+    fun move(delta: Float, dt : Float) {
+        x += vx * delta * dt
+        y += vy * delta * dt
 
         if (x - radius < 0 || x + radius > Gdx.graphics.width) {
             x = if (x - radius < 0) radius
