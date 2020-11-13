@@ -9,13 +9,13 @@ import kotlin.math.abs
 
 class Ball(val radius: Float, private val color: Color, x: Float = 0.0f, y: Float = 0.0f, vx: Float = 0.0f, vy: Float = 0.0f) {
     var x = x
-    private set
+     set
     var y = y
-        private set
+         set
     var vx = vx
-        private set
+         set
     var vy = vy
-        private set
+         set
     private val collider = CircleCollider(x, y, radius)
 
     var othervx = 0f

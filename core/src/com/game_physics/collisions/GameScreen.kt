@@ -19,34 +19,82 @@ class GameScreen(private val game: CollisionsGame) : Screen {
         ball2.move(delta, dt)
         CollisionSystem.update()
 
-        //TODO wyczyścić pierwsze piłki przed utworzeniem nowych
         if (Gdx.input.isKeyPressed(NUMPAD_1)){
-            ball1 = Ball(30f, Color(255, 0, 0), 320f, 360f, 4f, 0f)
-            ball2 = Ball(30f, Color(0, 0, 255), 880f, 360f, 0f, 0f)
+            ball1.x = 320f
+            ball1.y = 360f
+            ball1.vx = 4f
+            ball1.vy = 0f
+
+            ball2.x = 880f
+            ball2.y = 360f
+            ball2.vx = 0f
+            ball2.vy = 0f
         }
         if (Gdx.input.isKeyPressed(NUMPAD_2)){
-            ball1 = Ball(30f, Color(255, 0, 0), 320f, 360f, 5f, 0f)
-            ball2 = Ball(30f, Color(0, 0, 255), 680f, 360f, 2f, 0f)
+            ball1.x = 320f
+            ball1.y = 360f
+            ball1.vx = 5f
+            ball1.vy = 0f
+
+            ball2.x = 680f
+            ball2.y = 360f
+            ball2.vx = 2f
+            ball2.vy = 0f
         }
         if (Gdx.input.isKeyPressed(NUMPAD_3)){
-            ball1 = Ball(30f, Color(255, 0, 0), 320f, 360f, 4f, 0f)
-            ball2 = Ball(30f, Color(0, 0, 255), 880f, 360f, -4f, 0f)
+            ball1.x = 320f
+            ball1.y = 360f
+            ball1.vx = 4f
+            ball1.vy = 0f
+
+            ball2.x = 880f
+            ball2.y = 360f
+            ball2.vx = -4f
+            ball2.vy = 0f
         }
         if (Gdx.input.isKeyPressed(NUMPAD_5)){
-            ball1 = Ball(30f, Color(255, 0, 0), 320f, 340f, 4f, 0f)
-            ball2 = Ball(30f, Color(0, 0, 255), 880f, 360f, -4f, 0f)
+            ball1.x = 320f
+            ball1.y = 340f
+            ball1.vx = 4f
+            ball1.vy = 0f
+
+            ball2.x = 880f
+            ball2.y = 360f
+            ball2.vx = -4f
+            ball2.vy = 0f
         }
         if (Gdx.input.isKeyPressed(NUMPAD_6)){
-            ball1 = Ball(30f, Color(255, 0, 0), 320f, 380f, 4f, 0f)
-            ball2 = Ball(30f, Color(0, 0, 255), 880f, 360f, 0f, 0f)
+            ball1.x = 320f
+            ball1.y = 380f
+            ball1.vx = 4f
+            ball1.vy = 0f
+
+            ball2.x = 880f
+            ball2.y = 360f
+            ball2.vx = 0f
+            ball2.vy = 0f
         }
         if (Gdx.input.isKeyPressed(NUMPAD_7)){
-            ball1 = Ball(30f, Color(255, 0, 0), 520f, 360f, 0f, 3f)
-            ball2 = Ball(30f, Color(0, 0, 255), 580f, 360f, 0f, -3f)
+            ball1.x = 520f
+            ball1.y = 560f
+            ball1.vx = 0f
+            ball1.vy = -3f
+
+            ball2.x = 580f
+            ball2.y = 160f
+            ball2.vx = 0f
+            ball2.vy = 3f
         }
         if (Gdx.input.isKeyPressed(NUMPAD_8)){
-            ball1 = Ball(30f, Color(255, 0, 0), 320f, 360f, 2f, 2f)
-            ball2 = Ball(30f, Color(0, 0, 255), 980f, 360f, -2f, 2f)
+            ball1.x = 320f
+            ball1.y = 360f
+            ball1.vx = 2f
+            ball1.vy = 2f
+
+            ball2.x = 980f
+            ball2.y = 360f
+            ball2.vx = -2f
+            ball2.vy = 2f
         }
     }
 
