@@ -38,21 +38,26 @@ class Ball(val radius: Float, private val color: Color, x: Float = 0.0f, y: Floa
         }
         collider.update(x, y)
         if (collider.isColiding) {
-            val angle1 = (collider.collisionAngle + 180f)
+            var angle1 = (collider.collisionAngle + 180f)
             //TODO: Refactor using abs() (not necessary anymore, perpendicular is not used)
             //val perpendicular = if (vx >= 0) if (vy >= 0) -90f else 90f else if (vy >= 0) 90f else -90f
             //val angle2 = (collider.collisionAngle + perpendicular)
             //println("${collider.collisionAngle} $angle1 $angle2")
-            val direction1 = (180.0 / Math.PI * Math.atan2(vx.toDouble(),vy.toDouble())).toFloat()
-            val direction2 = (180.0 / Math.PI * Math.atan2(othervx.toDouble(),othervy.toDouble())).toFloat()
+            //val direction1 = (180.0 / Math.PI * Math.atan2(vx.toDouble(),vy.toDouble())).toFloat()
+            //val direction2 = (180.0 / Math.PI * Math.atan2(othervx.toDouble(),othervy.toDouble())).toFloat()
+            val direction1 = (Math.atan2(vx.toDouble(),vy.toDouble())).toFloat()
+            val direction2 = (Math.atan2(othervx.toDouble(),othervy.toDouble())).toFloat()
             val force1 = sqrt((vx*vx) + (vy*vy))
-            val force2 = sqrt((othervx*othervx)+(othervy+othervy))
+            val force2 = sqrt((othervx*othervx)+(othervy*othervy))
+            angle1 = angle1.toRadians()
 
-            vy = force2 * cos((direction2-angle1).toRadians()) * cos(angle1.toRadians()) + force1*sin((direction1-angle1).toRadians()) * cos((angle1.toRadians()+(Math.PI/2).toFloat()))
-            vx = force2 * cos((direction2-angle1).toRadians()) * sin(angle1.toRadians()) + force1*sin((direction1-angle1).toRadians()) * sin((angle1.toRadians()+(Math.PI/2).toFloat()))
+            //vy = force2 * cos((direction2-angle1).toRadians()) * cos(angle1.toRadians()) + force1*sin((direction1-angle1).toRadians()) * cos((angle1.toRadians()+(Math.PI/2).toFloat()))
+            //vx = force2 * cos((direction2-angle1).toRadians()) * sin(angle1.toRadians()) + force1*sin((direction1-angle1).toRadians()) * sin((angle1.toRadians()+(Math.PI/2).toFloat()))
+            vy = force2 * cos(direction2-angle1) * cos(angle1) + force1*sin(direction1-angle1) * cos((angle1+(Math.PI/2).toFloat()))
+            vx = force2 * cos(direction2-angle1) * sin(angle1) + force1*sin(direction1-angle1) * sin((angle1+(Math.PI/2).toFloat()))
 
             /*
-            println("angle1: $angle1 angle2: $angle2 direction1: $direction1 direction2: $direction2")
+            println("angle1: $angle1 direction1: $direction1 direction2: $direction2")
             println("vx: $vx vy: $vy force1: $force1 force2: $force2")
             println("othervx: $othervx othervy: $othervy")
             println()*/
