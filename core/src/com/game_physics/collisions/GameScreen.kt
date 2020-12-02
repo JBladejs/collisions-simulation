@@ -10,14 +10,13 @@ import com.game_physics.collisions.system.CollisionSystem
 class GameScreen(private val game: CollisionsGame) : Screen {
     private var ball1 = Ball(30f, Color(255, 0, 0), 220f, 350f, 3f, 0f)
     private var ball2 = Ball(30f, Color(0, 0, 255), 820f, 350f, -3f, 0f)
+    private var ball3 = Ball(30f, Color(0, 255, 0), 420f, 490f, 0f, -1f)
     private val dt = 53f
 
     private fun update(delta: Float) {
-        //TODO przerobić funkcję grabforce żeby wykonywała się na początku kolizji zamiast ciągle i żeby brała wartości obiektu z którym koliduje
         ball1.move(delta, dt)
         ball2.move(delta, dt)
-        ball1.grabForce(ball2.vx,ball2.vy)
-        ball2.grabForce(ball1.vx,ball1.vy)
+        ball3.move(delta, dt)
         CollisionSystem.update()
 
         if (Gdx.input.isKeyPressed(NUMPAD_1)){
@@ -128,6 +127,7 @@ class GameScreen(private val game: CollisionsGame) : Screen {
             begin()
             ball1.render(this)
             ball2.render(this)
+            ball3.render(this)
             end()
         }
         update(delta)
