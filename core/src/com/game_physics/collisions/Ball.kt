@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.MathUtils.cos
 import com.badlogic.gdx.math.MathUtils.sin
 import com.game_physics.collisions.system.CircleCollider
+import com.game_physics.collisions.system.CollisionSystem
 import java.math.BigDecimal
 import java.math.RoundingMode
 import kotlin.math.atan2
@@ -26,16 +27,23 @@ class Ball(val radius: Float, private val color: Color, x: Float = 0.0f, y: Floa
     fun move(delta: Float, dt : Float) {
         x += vx * delta * dt
         y += vy * delta * dt
-
         if (x - radius < 0 || x + radius > Gdx.graphics.width) {
             x = if (x - radius < 0) radius
             else Gdx.graphics.width - radius
             vx *= -1
+            CollisionSystem.removeCollisionsForCollider(collider)
         }
         if (y - radius < 0 || y + radius > Gdx.graphics.height) {
             y = if (y - radius < 0) radius
             else Gdx.graphics.height - radius
             vy *= -1
+            CollisionSystem.removeCollisionsForCollider(collider)
+        }
+        if (vx < 0.05f && vx > -0.05f) {
+            vx = 0f
+        }
+        if (vy < 0.05f && vy > -0.05f) {
+            vy = 0f
         }
         collider.update(x, y, vx, vy)
         if (collider.isColiding) {

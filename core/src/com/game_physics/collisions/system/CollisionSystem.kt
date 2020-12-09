@@ -13,6 +13,14 @@ object CollisionSystem {
 
     fun remove(collider: CircleCollider) = colliders.removeValue(collider, true)
 
+    fun removeCollisionsForCollider(collider: CircleCollider) {
+        for (collider2 in colliders) {
+            val collision = Collision(collider, collider2)
+            if (collisions.contains(collision, false))
+                collisions.removeValue(collision, false)
+        }
+    }
+
     fun update() {
         for (i in 0 until colliders.size - 1) {
             for (j in i + 1 until colliders.size) {

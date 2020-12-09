@@ -10,7 +10,7 @@ object DesktopLauncher {
         val config = LwjglApplicationConfiguration()
         with(config) {
             title = "Collisions"
-            width = 1280
+            width = 600
             height = 720
             resizable = false
 //            vSyncEnabled = false
