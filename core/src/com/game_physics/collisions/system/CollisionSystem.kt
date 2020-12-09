@@ -20,11 +20,11 @@ object CollisionSystem {
                    if (!collisions.contains(Collision(colliders[i], colliders[j]), false)) {
                        collisions.add(Collision(colliders[i], colliders[j]))
                        colliders[i].isColiding = true
-                       colliders[i].collisionAngle = atan2(colliders[j].x - colliders[i].x, colliders[j].y - colliders[i].y).toDegrees()
+                       colliders[i].collisionAngle = atan2(colliders[j].x - colliders[i].x, colliders[j].y - colliders[i].y)
                        colliders[i].vxHit = colliders[j].vx
                        colliders[i].vyHit = colliders[j].vy
                        colliders[j].isColiding = true
-                       colliders[j].collisionAngle = atan2(colliders[i].x - colliders[j].x, colliders[i].y - colliders[j].y).toDegrees()
+                       colliders[j].collisionAngle = atan2(colliders[i].x - colliders[j].x, colliders[i].y - colliders[j].y)
                        colliders[j].vxHit = colliders[i].vx
                        colliders[j].vyHit = colliders[i].vy
                        println("Collision!")
